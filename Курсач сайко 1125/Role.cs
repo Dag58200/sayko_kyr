@@ -9,5 +9,5 @@ public partial class Role
 
     public string Title { get; set; } = null!;
 
-    public virtual ICollection<Login> Logins { get; set; } = new List<Login>();
+    public virtual Login IdNavigation { get; set; } = null!;
 }

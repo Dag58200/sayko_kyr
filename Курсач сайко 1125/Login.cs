@@ -17,5 +17,5 @@ public partial class Login
 
     public decimal? Gpa { get; set; }
 
-    public virtual Role Role { get; set; } = null!;
+    public virtual Role? Role { get; set; }
 }

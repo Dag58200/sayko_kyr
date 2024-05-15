@@ -31,6 +31,8 @@ namespace CollegeAdmissionAutomation
 
         private readonly Login login;
         private Zap selectedzap;
+        private ObservableCollection<Zap> zaps;
+
         public MainWindowViewModel ViewModel { get; set; }
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -38,8 +40,14 @@ namespace CollegeAdmissionAutomation
 
 
 
-        public List<Zap> Zaps { get; set; }
-
+        public ObservableCollection<Zap> Zaps
+        {
+            get => zaps; set
+            {
+                zaps = value;
+                Signal(nameof(Zaps));
+            }
+        }
 
         public MainWindow(Login login)
         {
@@ -51,7 +59,7 @@ namespace CollegeAdmissionAutomation
         }
         private void FillStyles()
         {
-            Zaps = new List<Zap>();
+            Zaps = new ObservableCollection<Zap>();
 
             try
             {
@@ -67,7 +75,8 @@ namespace CollegeAdmissionAutomation
                     {
                         Id = reader.GetString("Id"),
                         Name = reader.GetString("Name"),
-                        Gpa = reader.GetDecimal("Gpa")
+                        Gpa = reader.GetDecimal("Gpa"),
+                        Spec = reader.GetDecimal("Spec")
                     });
                 }
 
@@ -144,6 +153,15 @@ namespace CollegeAdmissionAutomation
                 set
                 {
                     Gpa = value;
+                    OnPropertyChanged();
+                }
+            }
+            public decimal Spec
+            {
+                get => Spec;
+                set
+                {
+                    Spec = value;
                     OnPropertyChanged();
                 }
             }

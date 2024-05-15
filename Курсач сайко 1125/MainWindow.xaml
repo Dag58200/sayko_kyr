@@ -21,7 +21,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <DataGrid x:Name="applicantsDataGrid" Margin="5" Grid.Column="0" AutoGenerateColumns="True" CanUserAddRows="True" CanUserDeleteRows="False">
+            <DataGrid ItemsSource="{Binding Zaps}" x:Name="applicantsDataGrid" Margin="5,5,0,0" Grid.Column="0" AutoGenerateColumns="True" CanUserAddRows="True" CanUserDeleteRows="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Binding="{Binding Id}" />
                     <DataGridTextColumn Header="Имя" Binding="{Binding Name}" />
@@ -31,7 +31,7 @@
             </DataGrid>
 
             <StackPanel Grid.Column="1" VerticalAlignment="Bottom">
-                <Button x:Name="btnExit" Content="Выход" Click="btnExit_Click" Width="45" Height="391" />
+                <Button x:Name="btnExit" Content="Выход" Click="btnExit_Click" Width="45" Height="22" />
             </StackPanel>
         </Grid>
     </Grid>

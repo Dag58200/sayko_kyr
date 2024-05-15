@@ -50,11 +50,6 @@ public partial class Dayn1Context : DbContext
                 .HasColumnName("GPA");
             entity.Property(e => e.Password).HasMaxLength(255);
             entity.Property(e => e.RoleId).HasColumnType("int(11)");
-
-            entity.HasOne(d => d.Role).WithMany(p => p.Logins)
-                .HasForeignKey(d => d.RoleId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_login_role_Id");
         });
 
         modelBuilder.Entity<Role>(entity =>
@@ -67,6 +62,11 @@ public partial class Dayn1Context : DbContext
                 .ValueGeneratedNever()
                 .HasColumnType("int(11)");
             entity.Property(e => e.Title).HasMaxLength(255);
+
+            entity.HasOne(d => d.IdNavigation).WithOne(p => p.Role)
+                .HasForeignKey<Role>(d => d.Id)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_role");
         });
 
         modelBuilder.Entity<Zap>(entity =>
